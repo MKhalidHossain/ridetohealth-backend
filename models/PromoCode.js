@@ -4,23 +4,34 @@ const mongoose = require('mongoose');
 const promoCodeSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true
   },
   code: {
     type: String,
     required: true,
-    unique: true,
-    uppercase: true
+    unique: true
   },
   description: String,
   discountType: {
     type: String,
     enum: ['percentage', 'fixed'],
-    required: true
+    default: 'percentage'
   },
   discountValue: {
     type: Number,
     required: true
+  },
+  startDate:{
+    type: Date,
+    required: true
+  },
+  expiryDate:{
+    type: Date,
+    required: true
+  },
+  status: {
+    type: String,
+    enum: ['active', 'inactive', 'expired'],
+    default: 'active'
   },
   maxDiscount: {
     type: Number,
@@ -40,11 +51,9 @@ const promoCodeSchema = new mongoose.Schema({
   },
   validFrom: {
     type: Date,
-    required: true
   },
   validUntil: {
     type: Date,
-    required: true
   },
   applicableServices: [{
     type: mongoose.Schema.Types.ObjectId,
