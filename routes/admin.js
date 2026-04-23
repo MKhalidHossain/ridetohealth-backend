@@ -61,4 +61,4 @@ router.get('/users/:userId', adminController.getUserById);
 router.delete('/users/:userId', adminController.deleteUserById);
 
 
-module.exports = router;
+module.exports = router;    
